@@ -6,9 +6,8 @@ LABEL "com.github.actions.icon"="folder-plus"
 LABEL "com.github.actions.color"="blue"
 
 LABEL version="0.0.2"
-LABEL repository="https://github.com/noveto-com/s3-upload-sha256-action"
-LABEL homepage="https://noveto.com/"
-LABEL maintainer="https://github.com/stefanhp"
+LABEL repository="https://github.com/iisystems/s3-upload-sha256-action"
+LABEL maintainer="https://github.com/iisystems"
 
 # https://github.com/aws/aws-cli/blob/master/CHANGELOG.rst
 ENV AWSCLI_VERSION='1.22.36'
