@@ -38,18 +38,19 @@ EOF
 
 # Find all files in the SOURCE_DIR, compute SHA 256, upload file and add
 # SHA 256 as metadata
-files=(`find ${SOURCE_DIR:-.} -type f`)
-for file in ${files[@]}
+IFS=$'\n'; set -f
+for f in $(find ${SOURCE_DIR:-.} -name '*');
 do
     sha=($(sha256sum $file))
     file_no_source_dir=${file#*/}
     aws s3 cp \
         $file \
-        s3://${AWS_S3_BUCKET}/${DEST_DIR}/$file_no_source_dir \
+        s3://${AWS_S3_BUCKET}/$file_no_source_dir \
         --no-progress \
         --metadata sha256=$sha \
         ${ENDPOINT_APPEND} $*
 done
+unset IFS; set +f
 
 # Clear out credentials after we're done.
 # We need to re-run `aws configure` with bogus input instead of
